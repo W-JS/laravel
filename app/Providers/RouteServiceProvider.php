@@ -30,8 +30,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
+        // 全局路由配置
+//        Route::pattern('id','[0-9]+');
         parent::boot();
     }
 
