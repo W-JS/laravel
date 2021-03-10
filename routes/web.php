@@ -160,10 +160,47 @@ Route::get('/', function () {
 //Route::apiResource('blogs','BlogController');
 
 // 资源路由嵌套
-Route::resource('blogs.comments','CommentController')
-    ->shallow()->name('index','b.c.i')->parameters(['blogs'=>'bid','comments'=>'cid']);
+//Route::resource('blogs.comments','CommentController')->shallow()
+//    ->name('index','b.c.i')
+//    ->parameters(['blogs'=>'bid','comments'=>'cid']);
 
+// 表单提交
+//Route::get('task/form','TaskController@form');
+//Route::any('task/getform',function (){
+//    return \Illuminate\Support\Facades\Request::method();
+//});
+//Route::any('api/getform',function (){
+//    return \Illuminate\Support\Facades\Request::method();
+//});
 
+// MySQL数据库操作
+Route::get('data','DataController@index');
+
+// 请求与依赖注入
+//Route::get('user','UserController@index');
+// Cookie
+//Route::get('cookies','UserController@cookies');
+// Session
+//Route::get('sess','UserController@sess');
+
+// 中间件
+//Route::get('/admin', 'LoginController@index')->middleware('check:abc');
+//Route::get('/admin', 'LoginController@index')->middleware(\App\Http\Middleware\Check::class);
+//Route::get('/admin', 'LoginController@index')->middleware('mymd');
+//Route::get('/admin', 'LoginController@index');
+
+// 模板
+//Route::get('/task/user', 'TaskController@user');
+
+//Route::get('/task/user', function () {
+//    return view('user', [
+//        'name'  =>  'Mr.Lee'
+//    ]);
+//});
+
+//Route::get('/task/index', 'TaskController@index');
+//Route::get('/task/form', 'TaskController@form');
+//Route::post('/task/receive', 'TaskController@receive');
 
 
 
@@ -174,3 +211,14 @@ Route::resource('blogs.comments','CommentController')
 ////    return redirect('/');
 //    return view('404');
 //});
+
+
+// 短链接
+Route::namespace('ShortUrl')->group(function (){
+    Route::get('shortUrl','ShortUrlController@index');
+    Route::post('shortUrl/getShortUrl','ShortUrlController@getShortUrl');
+    Route::any('{url}','ShortUrlController@jumps1');
+    Route::any('shortUrl/jumps','ShortUrlController@jumps2');
+    Route::any('shortUrl/test','ShortUrlController@test');
+});
+
