@@ -13,7 +13,6 @@
         .container {
             position: relative;
         }
-
         .center {
             position: absolute;
             top: 50%;
